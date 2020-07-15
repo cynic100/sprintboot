@@ -2,6 +2,7 @@ package com.spring.springboot;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -91,9 +92,9 @@ public class UserController {
     public Map getMapById(Integer id){
         String sql = "SELECT * FROM mi WHERE id = ?";
         Map map = null;
-        try{
+        try {
             map= jdbcTemplate.queryForMap(sql,id);
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
         return map;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.springboot.dao.UseMapper">
+    <resultMap id="use" type="com.spring.springboot.entity.Use"/>
+    <parameterMap id="use" type="com.spring.springboot.entity.Use"/>
+    <select id="findUseByUseName" parameterType="String" resultMap="use">
+        SELECT * FROM mi
+        WHERE mi_name=#{1}
+    </select>
+
+
+    <update id="updateUseByUseName" parameterMap="use">
+        UPDATE mi SET mi_password=#{mi_password} WHERE mi_name=#{mi_name}
+    </update>
+
+    <delete id="deleteUseByUseName" parameterType="String">
+        DELETE FROM mi WHERE mi_name=#{1}
+    </delete>
+
+    <!-- 使用alias自定义的parameterType-->
+    <insert id="saveUse" parameterType="use">
+        INSERT INTO mi (mi_password,mi_name) VALUES (#{mi_password},#{mi_name})
+    </insert>
+
+    <select id="getUseList" resultMap="use">
+        SELECT  * FROM mi
+    </select>
+</mapper>
